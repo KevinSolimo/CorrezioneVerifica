@@ -1,0 +1,19 @@
+/*eslint-env node*/
+
+var express = require('express');
+var app = express();
+app.set('views', './views');
+app.set('view engine', 'pug');
+var country = require('countryjs');
+
+app.get('/', function (req, res) {
+  var nationList = country.all();
+  var nation = nationList[Math.floor(Math.random() * nationList.length)];
+  var nationName = nation.name;
+  console.log(nation);
+  res.render('es3',{nazione:nationName});
+});
+
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});

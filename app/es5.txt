@@ -1,0 +1,32 @@
+/*eslint-env node*/
+
+var express = require('express');
+var app = express();
+app.set('views', './views');
+app.set('view engine', 'pug');
+var country = require('countryjs');
+
+app.get('/', function (req, res) {
+  var nationList = country.all();
+  var nation = nationList[Math.floor(Math.random() * nationList.length)];
+  var nationName = nation.name;
+  console.log(nation);
+  res.render('es5',{nazione:nationName});
+});
+
+app.get('/invia', function (req, res){
+  var nation = req.query.nazione;
+  var capital = req.query.capitale;
+  var capitalOK = country.capital(nation,'name');
+  if(capital===capitalOK){
+      var msg = 'Bravo!';
+      res.render('es5',{answer:msg + ' La capitale corretta è ' + capitalOK});
+  }else{
+      var msg = 'Vai a ripassare la geografia.';
+      res.render('es5',{answer:msg + ' La capitale corretta è ' + capitalOK});
+  }
+});
+
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});

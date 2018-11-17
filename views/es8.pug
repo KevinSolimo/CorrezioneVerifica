@@ -1,0 +1,30 @@
+doctype html
+html(lang='en')
+  head
+    title Bootstrap Example
+    |   
+    meta(charset='utf-8')
+    |   
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    |   
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    |   
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    |   
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  body
+    .container
+      table.table.table-bordered
+        thead
+          tr
+            th Country
+        |     
+        tbody
+          tr
+            each naz,i in nazioni
+              if(i % numero == 0)
+                tr
+                td=naz.name
+              else
+                td=naz.name
+          
